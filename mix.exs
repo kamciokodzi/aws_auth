@@ -5,9 +5,9 @@ defmodule AWSAuth.Mixfile do
     [app: :aws_auth,
      version: "0.2.4",
      elixir: "~> 1.0",
-     description: description,
-     package: package,
-     deps: deps]
+     description: description(),
+     package: package(),
+     deps: deps()]
   end
 
   def application do
