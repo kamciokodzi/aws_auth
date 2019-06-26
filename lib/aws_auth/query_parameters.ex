@@ -10,7 +10,7 @@ defmodule AWSAuth.QueryParameters do
     region = String.downcase(region)
     service = String.downcase(service)
 
-    if !Dict.has_key?(headers, "host") do
+    headers = if !Dict.has_key?(headers, "host") do
       headers = Dict.put(headers, "host", uri.host)
     end
 

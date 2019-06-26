@@ -28,13 +28,13 @@ defmodule AWSAuth.AuthorizationHeader do
     region = String.downcase(region)
     service = String.downcase(service)
 
-    if !Dict.has_key?(headers, "host") do
+    headers = if !Dict.has_key?(headers, "host") do
       headers = Dict.put(headers, "host", uri.host)
     end
 
     hashed_payload = AWSAuth.Utils.hash_sha256(payload)
 
-    if !Dict.has_key?(headers, "x-amz-content-sha256") do
+    headers = if !Dict.has_key?(headers, "x-amz-content-sha256") do
       headers = Dict.put(headers, "x-amz-content-sha256", case payload do
           "" -> ""
           _  -> hashed_payload
