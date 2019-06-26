@@ -30,6 +30,8 @@ defmodule AWSAuth.AuthorizationHeader do
 
     headers = if !Dict.has_key?(headers, "host") do
       headers = Dict.put(headers, "host", uri.host)
+    else
+      headers
     end
 
     hashed_payload = AWSAuth.Utils.hash_sha256(payload)
@@ -39,6 +41,8 @@ defmodule AWSAuth.AuthorizationHeader do
           "" -> ""
           _  -> hashed_payload
         end)
+      else
+        headers
     end
 
     amz_date = DateFormat.format!(now, "%Y%m%dT%H%M%SZ", :strftime)

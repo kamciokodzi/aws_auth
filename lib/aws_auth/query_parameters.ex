@@ -12,6 +12,8 @@ defmodule AWSAuth.QueryParameters do
 
     headers = if !Dict.has_key?(headers, "host") do
       headers = Dict.put(headers, "host", uri.host)
+    else
+      headers
     end
 
     amz_date = DateFormat.format!(now, "%Y%m%dT%H%M%SZ", :strftime)
